@@ -11,7 +11,7 @@ export const signup = async (req, res, next) => {
       return next(errorHandler(400, "fill all the required fields!"));
     }
 
-    const user = User.findOne({ email });
+    const user = await User.findOne({ email });
     if (user) {
       return next(errorHandler(400, "Email already exist!"));
     }
@@ -36,7 +36,7 @@ export const signin = async (req, res, next) => {
       return next(errorHandler(400, "fill all the required fields!"));
     }
 
-    const user = User.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return next(errorHandler(400, "Email doesn't exist!"));
     }

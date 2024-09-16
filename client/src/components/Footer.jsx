@@ -32,7 +32,7 @@ export default function Footer() {
               Shop
             </NavLink>
             <NavLink
-              to="/product"
+              to="/product/66e85365ba46f7482bda61d2"
               className={({ isActive }) =>
                 isActive ? "font-medium text-white" : ""
               }
@@ -58,16 +58,18 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex items-center justify-between my-4">
-            <div className="flex gap-8 text-sm">
-                <p className="font-light">Copyright © 2023 3legant. All rights Reserved</p>
-                <p className="cursor-pointer hover:underline">Privacy Policy</p>
-                <p className="cursor-pointer hover:underline">Terms and Use</p>
-            </div>
-            <div className="flex gap-8 text-2xl">
-            <FaInstagram className="cursor-pointer hover:scale-110"/>
-            <SlSocialFacebook className="cursor-pointer hover:scale-110"/>
-            <AiOutlineYoutube className="cursor-pointer hover:scale-110"/>
-            </div>
+          <div className="flex gap-8 text-sm">
+            <p className="font-light">
+              Copyright © 2023 3legant. All rights Reserved
+            </p>
+            <p className="cursor-pointer hover:underline">Privacy Policy</p>
+            <p className="cursor-pointer hover:underline">Terms and Use</p>
+          </div>
+          <div className="flex gap-8 text-2xl">
+            <FaInstagram className="cursor-pointer hover:scale-110" />
+            <SlSocialFacebook className="cursor-pointer hover:scale-110" />
+            <AiOutlineYoutube className="cursor-pointer hover:scale-110" />
+          </div>
         </div>
       </div>
     </div>

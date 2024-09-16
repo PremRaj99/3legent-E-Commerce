@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import heroImage from "../assets/shop/ShopHero.png";
 import {
   BsFillGrid1X2Fill,
@@ -7,15 +7,28 @@ import {
 } from "react-icons/bs";
 import { CiGrid2H } from "react-icons/ci";
 import ItemCard from "../components/ItemCard";
-import LoveseatSofa from "../assets/home/LoveseatSofa.png";
-import TableLamp from "../assets/home/TableLamp.png";
-import BambooBasket from "../assets/home/BambooBasket.png";
-import Toasted from "../assets/home/Toasted.png";
-import BeigeTableLamp from "../assets/home/BeigeTableLamp.png";
 import CTA from "../components/CTA";
 import SubFooter from "../components/SubFooter";
+import {useNavigate} from "react-router-dom"
 
 export default function Shop() {
+  const [item, setItem] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const fetchitems = await fetch(`${import.meta.env.VITE_API_URL}/api/products`)
+      const data = await fetchitems.json();
+      console.log(data)
+      setItem(data);
+    }
+    fetchProduct()
+  }, [])
+
+  const handleItemClick = (id) => {
+    console.log(id)
+    navigate("/product/"+id);
+  }
   return (
     <div className="w-full">
       <div className="px-40 w-full">
@@ -84,41 +97,18 @@ export default function Shop() {
           </div>
         </div>
         <div className="flex gap-3 flex-wrap">
-          <ItemCard
-            name="Loveseat Sofa"
-            image={LoveseatSofa}
-            price="199"
-            oldPrice="400"
-          />
-          <ItemCard name="Table Lamp" image={TableLamp} price="24.99" />
-          <ItemCard
-            name="Being Table Lamp"
-            image={BeigeTableLamp}
-            price="24.99"
-          />
-          <ItemCard name="Bamboo Basket" image={BambooBasket} price="24.99" />
-          <ItemCard name="Toasted" image={Toasted} price="224.99" />
-          <ItemCard
-            name="Loveseat Sofa"
-            image={LoveseatSofa}
-            price="199"
-            oldPrice="400"
-          />
-          <ItemCard name="Table Lamp" image={TableLamp} price="24.99" />
-          <ItemCard
-            name="Being Table Lamp"
-            image={BeigeTableLamp}
-            price="24.99"
-          />
-          <ItemCard name="Bamboo Basket" image={BambooBasket} price="24.99" />
-          <ItemCard name="Toasted" image={Toasted} price="224.99" />
-          <ItemCard
-            name="Loveseat Sofa"
-            image={LoveseatSofa}
-            price="199"
-            oldPrice="400"
-          />
-          <ItemCard name="Table Lamp" image={TableLamp} price="24.99" />
+          {
+            item.map((product) => (
+              <ItemCard name={product.name}
+              image={product.images[0]}
+              price={product.price}
+              oldPrice={product.oldPrice}
+              discount={product.discount}
+              onClickItem={handleItemClick}
+              id={product._id}
+              key={product._id} />
+            ))
+          }
         </div>
         <div className="my-8 flex items-center justify-center">
           <button className="px-4 py-1 rounded-full border border-black">

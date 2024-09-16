@@ -1,8 +1,10 @@
 import React from "react";
 import CTAImage from "../assets/CTA.png";
 import { GoArrowRight } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 export default function CTA() {
+  const navigate = useNavigate();
   return (
     <div className="w-full flex border bg-background">
       <img src={CTAImage} className="flex-1" alt="" />
@@ -18,7 +20,10 @@ export default function CTA() {
             It's more affordable then ever to give every room in your home a
             stylish makeover
           </p>
-          <div className="border-b border-black w-fit">
+          <div
+            className="border-b border-black w-fit cursor-pointer hover:border-b-2"
+            onClick={() => navigate("/shop")}
+          >
             <p className="flex items-center gap-1">
               Shop Now <GoArrowRight />
             </p>

@@ -14,7 +14,7 @@ export default function Header() {
             <NavLink to="/shop" className={({isActive}) => isActive ? "font-semibold text-textPrimary" : ""}>
             Shop
             </NavLink>
-            <NavLink to="/product" className={({isActive}) => isActive ? "font-semibold text-textPrimary" : ""}>
+            <NavLink to="/product/66e85365ba46f7482bda61d2" className={({isActive}) => isActive ? "font-semibold text-textPrimary" : ""}>
             Product
             </NavLink>
             <NavLink to="/contact" className={({isActive}) => isActive ? "font-semibold text-textPrimary" : ""}>

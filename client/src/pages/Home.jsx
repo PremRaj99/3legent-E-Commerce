@@ -9,8 +9,10 @@ import NewArrivals from "../components/Home/NewArrivals";
 import OurService from "../components/Home/OurService";
 import CTA from "../components/CTA";
 import SubFooter from "../components/SubFooter";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <div className="w-full">
       <div className="px-40 w-full">
@@ -36,7 +38,10 @@ export default function Home() {
           <div className="flex-1 flex flex-col bg-background p-12">
             <div className="flex flex-col gap-4">
               <h3 className="text-3xl font-semibold">Living Room</h3>
-              <div className="border-b border-black w-fit">
+              <div
+                className="border-b border-black w-fit cursor-pointer hover:border-b-2"
+                onClick={() => navigate("/shop")}
+              >
                 <p className="text-sm text-textSecondary flex items-center gap-1">
                   Shop Now <GoArrowRight />
                 </p>
@@ -48,7 +53,10 @@ export default function Home() {
             <div className="flex-1 relative w-full flex bg-background p-12">
               <div className="absolute bottom-12 flex flex-col gap-4">
                 <h3 className="text-3xl font-semibold">Bedroom</h3>
-                <div className="border-b border-black w-fit">
+                <div
+                  className="border-b border-black w-fit cursor-pointer hover:border-b-2"
+                  onClick={() => navigate("/shop")}
+                >
                   <p className="text-sm text-textSecondary flex items-center gap-1">
                     Shop Now <GoArrowRight />
                   </p>
@@ -59,7 +67,10 @@ export default function Home() {
             <div className="flex-1 relative w-full flex bg-background p-12">
               <div className="absolute bottom-12 flex flex-col gap-4">
                 <h3 className="text-3xl font-semibold">Kitchen</h3>
-                <div className="border-b border-black w-fit">
+                <div
+                  className="border-b border-black w-fit cursor-pointer hover:border-b-2"
+                  onClick={() => navigate("/shop")}
+                >
                   <p className="text-sm text-textSecondary flex items-center gap-1">
                     Shop Now <GoArrowRight />
                   </p>
@@ -70,14 +81,14 @@ export default function Home() {
           </div>
         </div>
         {/* New Arrival section */}
-        <NewArrivals title="New Arrivals"/>
+        <NewArrivals title="New Arrivals" />
         {/* Our Service section */}
         <OurService />
       </div>
       {/* CTA section */}
-      <CTA/>
+      <CTA />
       {/* Sub Footer section */}
-      <SubFooter/>
+      <SubFooter />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import cors from "cors";
 
 // all router imports
 import authRouter from "./routers/auth.route.js";
+import productRouter from "./routers/product.route.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(cors());
 
 // define all routers
 app.use("/api/auth", authRouter);
+app.use("/api/products", productRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello Backend");

@@ -35,6 +35,7 @@ export default function Signup() {
       const data = await user.json();
       if (data) {
         toast.success(data.message);
+        navigate("/signin")
       }
     } catch (error) {
       toast.error(error.message);

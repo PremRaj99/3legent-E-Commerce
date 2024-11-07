@@ -1,6 +1,5 @@
 import express from "express";
-import { signin, signout, signup } from "../controllers/auth.controller.js";
-import { verifyToken } from "../utils/verifyUser.js";
+import { verifyAdmin, verifyToken } from "../utils/verifyUser.js";
 import {
   createProduct,
   deleteProduct,
@@ -12,10 +11,10 @@ import {
 const router = express.Router();
 
 // define all routes
-router.post("/", verifyToken, createProduct);
+router.post("/", verifyAdmin, createProduct);
 router.get("/", getProduct);
 router.get("/:id", getSpecificProduct);
-router.put("/:id", verifyToken, updateProduct);
-router.delete("/:id", verifyToken, deleteProduct);
+router.put("/:id", verifyAdmin, updateProduct);
+router.delete("/:id", verifyAdmin, deleteProduct);
 
 export default router;

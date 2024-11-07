@@ -3,6 +3,7 @@ import comparePassword from "../utils/comparePassword.js";
 import errorHandler from "../utils/error.js";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 import hashPassword from "../utils/hashPassword.js";
+import responseHandler from "../utils/response.js";
 
 export const signup = async (req, res, next) => {
   try {
@@ -23,7 +24,9 @@ export const signup = async (req, res, next) => {
     });
     await newUser.save();
 
-    res.status(200).json({ message: "User created successfully" });
+    const { password: pass, ...rest } = newUser._doc;
+
+    res.status(200).json(responseHandler(200, rest, "User created successfully"));
   } catch (error) {
     next(error);
   }
@@ -46,7 +49,9 @@ export const signin = async (req, res, next) => {
     }
     generateTokenAndSetCookie(user._id, res, user.role);
     const { password: pass, ...rest } = user._doc;
-    res.status(200).json(rest);
+    res
+      .status(200)
+      .json(responseHandler(200, rest, "User logged in successfully"));
   } catch (error) {
     next(error);
   }
@@ -55,7 +60,7 @@ export const signin = async (req, res, next) => {
 export const signout = (req, res, next) => {
   try {
     res.clearCookie("access_token", { path: "/" });
-    res.status(200).json({ message: "Logged Out Successfully!" });
+    res.status(200).json(responseHandler(200, [], "User logged out successfully"));
   } catch (error) {
     next(error);
   }

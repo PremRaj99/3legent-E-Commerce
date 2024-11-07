@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
-  user: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User", // Assuming a User schema exists
     required: true,
@@ -33,7 +33,12 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     category: {
-      type: [String],
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Category",
+        },
+      ],
       required: true,
     },
     images: {

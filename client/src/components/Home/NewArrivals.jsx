@@ -33,7 +33,7 @@ export default function NewArrivals({ title, category="Living Room" }) {
         </div>
       </div>
       <div className="flex w-full my-4 overflow-auto gap-4">
-        {item.map((product) => (
+        { item.map((product) => (
           <ItemCard
             name={product.name}
             image={product.images[0]}

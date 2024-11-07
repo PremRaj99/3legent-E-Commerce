@@ -5,8 +5,11 @@ import connectToMongo from "./db/connectWithMongo.js";
 import cors from "cors";
 
 // all router imports
-import authRouter from "./routers/auth.route.js";
-import productRouter from "./routers/product.route.js";
+import authRouter from "./routes/auth.route.js";
+import productRouter from "./routes/product.route.js";
+import cartRouter from './routes/cart.route.js';
+import categoryRouter from './routes/category.route.js';
+import orderRouter from './routes/order.route.js';
 
 dotenv.config();
 
@@ -19,15 +22,18 @@ app.use(cors());
 
 // define all routers
 app.use("/api/auth", authRouter);
-app.use("/api/products", productRouter);
+app.use("/api/product", productRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/category", categoryRouter);
+app.use("/api/order", orderRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello Backend");
+  res.send("<h1>※ Server is running ※</h1>");
 });
 
 app.listen(port, () => {
   connectToMongo();
-  console.log("server is running on port: " + port);
+  console.log("server is running on port: http://localhost:" + port);
 });
 
 // error handle middleware
